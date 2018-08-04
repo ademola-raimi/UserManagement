@@ -19,4 +19,5 @@ return [
     'Zend\Validator',
     'ZendDeveloperTools',
     'Application',
+    'UserManagement',
 ];
