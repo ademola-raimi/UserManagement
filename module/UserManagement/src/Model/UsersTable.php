@@ -52,7 +52,7 @@ class UsersTable
     /**
      * save or update a user data.
      *
-     * @return array || exception
+     * @return array || exception || boolean
      */
     public function saveUser(UserManagement $user)
     {
@@ -66,7 +66,7 @@ class UsersTable
 
         if ($id === 0) {
             $this->tableGateway->insert($data);
-            return;
+            return true;
         }
 
         if (! $this->getUser($id)) {
@@ -76,16 +76,19 @@ class UsersTable
             ));
         }
 
-        $this->tableGateway->update($data, ['id' => $id]);
+        if (empty($user->email)) {
+            unset($data['email']);
+        }
+        return $this->tableGateway->update($data, ['id' => $id]);
     }
 
     /**
      * delete a user data.
      *
-     * @return array
+     * @return boolean
      */
     public function deleteUser($id)
     {
-        $this->tableGateway->delete(['id' => (int) $id]);
+        return $this->tableGateway->delete(['id' => (int) $id]);
     }
 }
