@@ -1,0 +1,45 @@
+<?php
+session_start();
+$title = 'Users';
+$this->headTitle($title);
+$count = 1;
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('user', ['action' => 'add']) ?>">Add new user</a>
+</p>
+
+<?php
+    if (isset($_SESSION['first_name'])) {
+        $firstName = $_SESSION['first_name'];?>
+        <div class="alert alert-success">
+          <strong>Success!</strong> Welcome <?= $firstName; ?>, you have been added to our list of users. The list below contains other users.
+        </div>
+    <?php } ?>
+    
+
+<table id="example" class="table">
+<thead>
+<tr>
+    <th>S/N</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<?php foreach ($users as $user) : ?>
+    <tr>
+        <td><?= $count++ ?></td>
+        <td><?= $this->escapeHtml($user->first_name) ?></td>
+        <td><?= $this->escapeHtml($user->last_name) ?></td>
+        <td><?= $this->escapeHtml($user->email) ?></td>
+        <td>
+            <a href="<?= $this->url('user', ['action' => 'edit', 'id' => $user->id]) ?>" title="Edit <?= $user->first_name . " " . $user->last_name ?>">Edit</a>
+            <a href="#" class="delete-user" data-id="<?= $user->id ?>" title="Delete <?= $user->first_name . " " . $user->last_name ?>" >Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+</tbody>
+</table>
