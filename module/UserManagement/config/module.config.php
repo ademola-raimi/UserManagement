@@ -32,6 +32,16 @@ return [
                     ],
                 ],
             ],
+            'index' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route' => '/user/index',
+                    'defaults' => [
+                        'controller' => Controller\UserManagementController::class,
+                        'action'     => 'list',
+                    ],
+                ],
+            ],
         ],
     ],
 

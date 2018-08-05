@@ -7,6 +7,7 @@
 
 namespace Application;
 
+use UserManagement\Controller;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -19,26 +20,11 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'controller' => Controller\UserManagementController::class,
+                        'action'     => 'add',
                     ],
                 ],
             ],
-            'application' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/application[/:action]',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-        ],
-    ],
-    'controllers' => [
-        'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
