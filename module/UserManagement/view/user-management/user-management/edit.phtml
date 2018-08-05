@@ -1,0 +1,63 @@
+<?php
+
+$title = 'Add User';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+
+<form method="POST" action="<?= $this->url('user', ['action' => 'edit', 'id' => $user->id]) ?>">
+
+    <div class="form-group>
+        <label for="first_name" class="control-label">First Name</label>
+        <input id="first_name" type="text" class="form-control" name="first_name" value="<?= isset($oldData['first_name']) ? $oldData['first_name'] : $user->first_name ?>">
+
+        <?php
+        if (isset($errors) && isset($errors['first_name'])) {
+            foreach ($errors['first_name'] as $value) {?>
+                <span class="help-block custom-error">
+                    <strong><?= $value ?></strong>
+                </span>
+            <?php }
+        }
+        ?>
+    </div>
+    <br>
+    <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+        <input  type="hidden" name="id" value="<?= $user->id ?>">
+        <label for="last_name" class="control-label">Last Name</label>
+        <input id="last_name" type="text" class="form-control" value="<?= isset($oldData['last_name']) ? $oldData['last_name'] : $user->last_name ?>" name="last_name" >
+        <?php
+        if (isset($errors) && isset($errors['last_name'])) {
+            foreach ($errors['last_name'] as $value) {?>
+                <span class="help-block custom-error">
+                    <strong><?= $value ?></strong>
+                </span>
+            <?php }
+        }
+        ?>
+    </div>
+    <br>
+    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+        <label for="email" class="control-label">E-Mail Address</label>
+        <input id="email" type="email" value="<?= isset($oldData['email']) ? $oldData['email'] : $user->email ?>" class="form-control" name="email">
+        <?php
+        if (isset($errors) && isset($errors['email'])) {
+            foreach ($errors['email'] as $value) {?>
+                <span class="help-block custom-error">
+                    <strong><?= $value ?></strong>
+                </span>
+            <?php }
+        }
+        ?>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="">
+            <button type="submit" class="btn btn-primary">
+                Update
+            </button>
+
+        </div>
+    </div>
+</form>

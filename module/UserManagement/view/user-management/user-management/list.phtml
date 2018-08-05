@@ -1,5 +1,9 @@
 <?php
-session_start();
+use Zend\Session\Container;
+use Zend\Session\SessionManager;
+
+$sessionManager = new SessionManager();
+$sessionContainer = new Container('ContainerNamespace', $sessionManager);
 $title = 'Users';
 $this->headTitle($title);
 $count = 1;
@@ -10,15 +14,36 @@ $count = 1;
 </p>
 
 <?php
-    if (isset($_SESSION['first_name'])) {
-        $firstName = $_SESSION['first_name'];?>
+    if (isset($sessionContainer->first_name)) {
+        $firstName = $sessionContainer->first_name;?>
         <div class="alert alert-success">
           <strong>Success!</strong> Welcome <?= $firstName; ?>, you have been added to our list of users. The list below contains other users.
         </div>
     <?php
-    	session_destroy();
-     } ?>
-    
+        unset($sessionContainer->first_name);
+    } if (isset($sessionContainer->success)) {
+		$message = $sessionContainer->success;?>
+		<div class="alert alert-success">
+		  <strong>Success!</strong> <?= $message; ?>
+		</div>
+	<?php
+		unset($sessionContainer->success);
+	} if (isset($sessionContainer->failure)) {
+		$message = $sessionContainer->failure;?>
+		<div class="alert alert-danger">
+		  <strong>Oops!</strong> <?= $message; ?>
+		</div>
+	<?php
+		unset($sessionContainer->failure);
+	} if (isset($sessionContainer->update_first_name)) {
+        $firstName = $sessionContainer->update_first_name;?>
+        <div class="alert alert-success">
+          <strong>Success!</strong> <?= $firstName; ?> has been updated successfully
+        </div>
+    <?php
+        unset($sessionContainer->update_first_name);
+    }
+?>
 
 <table id="example" class="table">
 <thead>
