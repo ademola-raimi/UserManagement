@@ -19,12 +19,13 @@
         "zendframework/zend-db": "^2.8.1",
         "zendframework/zend-mvc-form": "^1.0",
         "zendframework/zend-session": "^2.7.1",
-        "zendframework/zend-servicemanager-di": "^1.0"
+        "zendframework/zend-servicemanager-di": "^1.0",
+        "bjyoungblood/bjy-profiler": "dev-master"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Album\\": "module/UserManagement/src/"
+            "UserManagement\\": "module/UserManagement/src/"
         }
     },
     "autoload-dev": {
