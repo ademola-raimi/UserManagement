@@ -44,20 +44,6 @@ class UserManagement implements InputFilterAwareInterface
         ));
     }
 
-  //   public function validateEmail()
-  //   {
-  //   	$validator = new Zend\Validator\EmailAddress();
-
-  //   	if ($validator->isValid($email)) {
-	 //    // email appears to be valid
-		// } else {
-	 //    // email is invalid; print the reasons
-		//     foreach ($validator->getMessages() as $message) {
-		//         return "$message\n";
-		//     }
-		// }
-  //   }
-
     public function getInputFilter()
     {
         if ($this->inputFilter) {
@@ -65,14 +51,6 @@ class UserManagement implements InputFilterAwareInterface
         }
 
         $inputFilter = new InputFilter();
-
-        // $inputFilter->add([
-        //     'name' => 'id',
-        //     'required' => true,
-        //     'filters' => [
-        //         ['name' => ToInt::class],
-        //     ],
-        // ]);
 
         $inputFilter->add([
             'name' => 'first_name',
@@ -136,6 +114,7 @@ class UserManagement implements InputFilterAwareInterface
         ]);
 
         $this->inputFilter = $inputFilter;
+
         return $this->inputFilter;
     }
 }
