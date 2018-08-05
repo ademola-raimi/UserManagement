@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle('ZF UserManagement System')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -35,12 +35,14 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="<?= $this->url('home') ?>">
-                        <img src="<?= $this->basePath('img/zf-logo-mark.svg') ?>" height="28" alt="Zend Framework <?= \Application\Module::VERSION ?>"/>&nbsp;Skeleton Application
+                        <img src="<?= $this->basePath('img/zf-logo-mark.svg') ?>" height="28" alt="Zend Framework <?= \Application\Module::VERSION ?>"/>&nbsp;User Management syetem
                     </a>
                 </div>
-                <div class="collapse navbar-collapse">
+                <div style="float: right;" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?= $this->url('home') ?>">Home</a></li>
+                        <li class="active"><a href="<?= $this->url('user') ?>">Add User</a></li>
+                        <li class="active"><a href="<?= $this->url('list') ?>">List User</a></li>
                     </ul>
                 </div>
             </div>
@@ -56,11 +58,33 @@
     </body>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
         } );
+
+        $('.delete-user').click(function (event) {
+            var id  = $(this).data('id');
+
+            swal({
+              title: "Are you sure you want to delete this user?",
+              text: "Once deleted, you will not be able to recover the user!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                window.location.href = '/user/delete/'+id;
+              } else {
+                swal("The user is not deleted");
+              }
+            });
+
+            event.preventDefault();
+        });
     </script>
 
 </html>
