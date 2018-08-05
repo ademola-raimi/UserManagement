@@ -6,7 +6,7 @@ $count = 1;
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
 <p>
-    <a href="<?= $this->url('user', ['action' => 'add']) ?>">Add new user</a>
+    <a href="<?= $this->url('user', ['action' => 'add']) ?>" class="btn btn-primary">Add new user</a>
 </p>
 
 <?php
@@ -15,7 +15,9 @@ $count = 1;
         <div class="alert alert-success">
           <strong>Success!</strong> Welcome <?= $firstName; ?>, you have been added to our list of users. The list below contains other users.
         </div>
-    <?php } ?>
+    <?php
+    	session_destroy();
+     } ?>
     
 
 <table id="example" class="table">

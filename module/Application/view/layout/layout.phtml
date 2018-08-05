@@ -10,6 +10,8 @@
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ?>
 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+
         <!-- Le styles -->
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
             ->prependStylesheet($this->basePath('css/style.css'))
@@ -47,9 +49,18 @@
             <?= $this->content ?>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd. All rights reserved.</p>
+                <p>&copy; 2018 - <?= date('Y') ?> Made by Love By <a style="color:  #ff432e;" href="https://github.com/andela-araimi" target="_blank">Demo</a></strong>. All rights reserved.</p>
             </footer>
         </div>
         <?= $this->inlineScript() ?>
     </body>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+
 </html>
