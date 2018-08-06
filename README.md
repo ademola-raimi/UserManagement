@@ -4,25 +4,29 @@
 Welcome to User Management System. Zend Framework 3 is used to build this app.
 
 ## Introduction
+<hr>
 This is a platform where user can add their details. The homepage displays a simple form with 3 fields
 `Last Name`, `First Name` and `Email`. When you fill the form. you get a success notification and you will be redirected to a list of other users including yours. 
 
 Note that the form is highly validated. All fields are required. Email field is unique and that means that there will never be duplicated email. If you enter an already existed email or ignore any of the fields and click Save, you will be redirected back with error messages styled with special color.
 
-Any user can be edited and deleted. If you click in the edited field on the table, you will also get a small form to make your edition and as expected, it's also validated the same way addition is validated.
+Any user can be edited and deleted. If you click on the `EDIT` button on the list, you will be redirected to the `EDIT PAGE` where you can make your corrections, it's also validated.
 
-If a user click on the delete link, the user will be prompted if he/she really wants to delete the user. If the user clicks `No`, the data will be retained and if `yes`, the data will completely be removed from the database. It can't be recovered.
+
+If a user is deleted, the data will completely be removed from the database. It can't be recovered.
 
 ## Installation
+<hr>
 After clonning this project, the easiest way to start the server is by using the PHP's built-in web server:
 
 ```bash
 $ cd path/to/install
 # then you have to run the below command to get all the dependencies
 $ composer update 
+#when asked for an input enter “1”
 $ php -S 0.0.0.0:8080 -t public/ public/index.php
 # OR use the composer alias:
-$ composer update
+$ composer run --timeout 0 serve
 
 # the project should be on localhost:8080
 ```
@@ -52,8 +56,11 @@ If you are running PHP 7.2, to succesfully run the test, run
 `phpunit  --stderr `
 Or
 `./vendor/bin/phpunit --stderr`
+Or
+`composer test`
 
-## Other method of installation
+## Other methods of installation
+<hr>
 
 ### Using docker-compose
 
