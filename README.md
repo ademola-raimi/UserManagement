@@ -22,7 +22,9 @@ $ cd path/to/install
 $ composer update 
 $ php -S 0.0.0.0:8080 -t public/ public/index.php
 # OR use the composer alias:
-$ composer run --timeout 0 serve
+$ composer update
+
+# the project should be on localhost:8080
 ```
 
 Everything is already setup in this project, you really don't need to do any other thing. sqlite is used as a data storage system. The project contains an sqlite database `sqlite.db` located in the data folder.

@@ -13,6 +13,15 @@ $count = 1;
     <a href="<?= $this->url('user', ['action' => 'add']) ?>" class="btn btn-primary">Add new user</a>
 </p>
 
+	<?php
+	if (isset($sessionContainer->first_name)) {?>
+		<div><strong> Hello, <?= $sessionContainer->first_name ?></strong> </div>
+	<?php }
+	
+	?>
+
+
+
 <?php
     if (isset($sessionContainer->first_name)) {
         $firstName = $sessionContainer->first_name;?>

@@ -41,6 +41,7 @@ $this->headTitle($title);
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="email" class="control-label">E-Mail Address</label>
         <input id="email" type="email" class="form-control" name="email" value="<?= isset($oldData['email']) ? $oldData['email'] : '' ?>">
+        <label id="error_email" style="color: red;"></label>
         <?php
         if (isset($errors) && isset($errors['email'])) {
             foreach ($errors['email'] as $value) {?>

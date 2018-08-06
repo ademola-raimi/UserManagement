@@ -45,7 +45,7 @@
             "@development-enable"
         ],
         "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
-        "test": "phpunit"
+        "test": "phpunit --stderr"
     },
     "require-dev": {
         "zendframework/zend-developer-tools": "^1.1.0",
