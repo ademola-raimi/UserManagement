@@ -49,6 +49,7 @@
     },
     "require-dev": {
         "zendframework/zend-developer-tools": "^1.1.0",
-        "zendframework/zend-test": "^3.2"
+        "zendframework/zend-test": "^3.2",
+        "satooshi/php-coveralls": "^1.0",
     }
 }
