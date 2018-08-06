@@ -1,4 +1,6 @@
-## User Management System
+# User Management System
+[![Build Status](https://travis-ci.org/andela-araimi/UserManagement.svg?branch=master)](https://travis-ci.org/andela-araimi/UserManagement)
+
 Welcome to User Management System. Zend Framework 3 is used to build this app.
 
 ## Introduction
