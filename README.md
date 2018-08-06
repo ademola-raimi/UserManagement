@@ -18,6 +18,8 @@ After clonning this project, the easiest way to start the server is by using the
 
 ```bash
 $ cd path/to/install
+# then you have to run the below command to get all the dependencies
+$ composer update 
 $ php -S 0.0.0.0:8080 -t public/ public/index.php
 # OR use the composer alias:
 $ composer run --timeout 0 serve
