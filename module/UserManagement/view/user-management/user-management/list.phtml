@@ -15,14 +15,9 @@ $count = 1;
 
 	<?php
 	if (isset($sessionContainer->first_name)) {?>
-		<div><strong> Hello, <?= $sessionContainer->first_name ?></strong> </div>
+		<h1><strong> Hello, <?= $sessionContainer->first_name ?></strong> </h1>
 	<?php }
-	
-	?>
 
-
-
-<?php
     if (isset($sessionContainer->first_name)) {
         $firstName = $sessionContainer->first_name;?>
         <div class="alert alert-success">
