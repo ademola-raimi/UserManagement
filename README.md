@@ -68,7 +68,7 @@ I also took out time to write automation test. Codeception, Selenium server and 
 
 To run the test, run:
 ```bash
-`vendor/bin/codecept run `
+$ vendor/bin/codecept run
 ```
 if you encounter an error such as:
 `UserManagement/tests/functional/ directory does not exist` and `UserManagement/tests/unit/  directory does not exist`,
