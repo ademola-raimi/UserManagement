@@ -59,13 +59,15 @@ Or
 Or
 `composer test`
 
-##NOTE! NOTE! NOTE!
+## NOTE! NOTE! NOTE!
 
 I also took out time to write automation test. Codeception, Selenium server and chrome driver is used for this part. You don't need to install them, I already included the tools in the project
 
 To run the test, run:
 `vendor/bin/codecept run `
-#note that you need to start your server before running the test
+# note that you need to start your server before running the test
+# you also need to start selenium server by running:
+`java -jar selenium-server-standalone-3.13.0.jar`
 
 This will open up chrome automatically and run all the UI tests
 
