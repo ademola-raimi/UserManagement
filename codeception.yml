@@ -1,0 +1,19 @@
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs
+actor_suffix: Tester
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+        # - [Db]
+    # config:
+    #     - Db
+    #       dsn: 'mysql:host=localhost;dbname=testdb'
+    #       user: 'root'
+    #       password: ''
+    #       populate: true # load dump before all tests
+    #       cleanup: true # load dump for each test
+    #       dump: 'tests/_data/dump.sql'
