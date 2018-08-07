@@ -65,6 +65,7 @@ I also took out time to write automation test. Codeception, Selenium server and 
 
 To run the test, run:
 `vendor/bin/codecept run `
+if you encounter an error of UserManagement/tests/functional/" and UserManagement/tests/unit/" directory does not exist directory does not exist, please make an empty directory to fix the error.
 ##### note that you need to start your server before running the test
 ##### you also need to start selenium server by running:
 `java -jar selenium-server-standalone-3.13.0.jar`
