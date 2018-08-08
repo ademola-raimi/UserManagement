@@ -3,7 +3,10 @@
 namespace UserManagementTest\Controller;
 
 use UserManagement\Model\UserManagement;
+use RuntimeException;
 use Prophecy\Argument;
+use Zend\Session\Container;
+use Zend\Session\SessionManager;
 use UserManagement\Model\UsersTable;
 use Zend\ServiceManager\ServiceManager;
 use UserManagement\Controller\UserManagementController;
@@ -70,6 +73,10 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testAddActionRedirectsAfterValidPost()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = '34fw45eefrt5';
         $this->usersTable
             ->saveUser(Argument::type(UserManagement::class))
             ->shouldBeCalled();
@@ -77,6 +84,7 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
         $postData = [
             'first_name'  => 'John',
+            'csrf' => '34fw45eefrt5',
             'last_name' => 'Doe',
             'email'     => 'john@sample.com',
         ];
@@ -88,9 +96,14 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testThatAddActionfailedFirstNameValidation()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'sdfdserf56yhg5';
         $postData = [
             'first_name'  => '',
             'last_name' => 'Doe',
+            'csrf' => 'sdfdserf56yhg5',
             'email'     => 'john@sample.com',
         ];
         $test = $this->dispatch('/user/add', 'POST', $postData);
@@ -101,9 +114,15 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testThatAddActionfailedLastNameValidation()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'dffvh34567uhg67ytr';
+
         $postData = [
             'first_name'  => 'John',
             'last_name' => '',
+            'csrf' => 'dffvh34567uhg67ytr',
             'email'     => 'john@sample.com',
         ];
         $test = $this->dispatch('/user/add', 'POST', $postData);
@@ -114,9 +133,15 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testThatAddActionfailedEmptyEmail()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'dffvh34567uhg67ytr';
+
         $postData = [
             'first_name'  => 'John',
             'last_name' => 'Doe',
+            'csrf' => 'dffvh34567uhg67ytr',
             'email'     => '',
         ];
         $test = $this->dispatch('/user/add', 'POST', $postData);
@@ -127,9 +152,15 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testThatAddActionfailedInvalidEmail()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'fewerthy654ewdfgy65r';
+
         $postData1 = [
             'first_name'  => 'John',
             'last_name' => 'Doe',
+            'csrf' => 'fewerthy654ewdfgy65r',
             'email'     => 'john',
         ];
         $test = $this->dispatch('/user/add', 'POST', $postData1);
@@ -150,6 +181,11 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testAddActionRedirectsAfterValidEditing()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'dfgfdswe456ytre4534rf';
+
         $this->usersTable
             ->saveUser(Argument::type(UserManagement::class))
             ->shouldBeCalled();
@@ -158,6 +194,7 @@ class UserManagementTest extends AbstractHttpControllerTestCase
         $postData = [
             'first_name'  => 'John',
             'last_name' => 'Doe',
+            'csrf' => 'dfgfdswe456ytre4534rf',
             'email'     => 'john@sample.com',
         ];
         $this->dispatch('/user/add', 'POST', $postData);
@@ -174,6 +211,11 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testNotFoundUserEdition()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'dfghyt54efghjiuygfdr5';
+
         $this->usersTable
             ->saveUser(Argument::type(UserManagement::class))
             ->shouldBeCalled();
@@ -182,6 +224,7 @@ class UserManagementTest extends AbstractHttpControllerTestCase
         $postData = [
             'first_name'  => 'John',
             'last_name' => 'Doe',
+            'csrf' => 'dfghyt54efghjiuygfdr5',
             'email'     => 'john@sample.com',
         ];
         $this->dispatch('/user/add', 'POST', $postData);
@@ -193,6 +236,11 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testDeleteActionRedirectsAfterValidDeletion()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'fggtreswe45tre34r';
+
         $this->usersTable
             ->saveUser(Argument::type(UserManagement::class))
             ->shouldBeCalled();
@@ -201,6 +249,7 @@ class UserManagementTest extends AbstractHttpControllerTestCase
         $postData = [
             'first_name'  => 'John',
             'last_name' => 'Doe',
+            'csrf' => 'fggtreswe45tre34r',
             'email'     => 'john@sample.com',
         ];
         $this->dispatch('/user/add', 'POST', $postData);
@@ -217,15 +266,36 @@ class UserManagementTest extends AbstractHttpControllerTestCase
 
     public function testNotFoundUserDeletion()
     {
+        $sessionManager = new SessionManager();
+        $sessionContainer = new Container('ContainerNamespace', $sessionManager);
+
+        $sessionContainer->csrf = 'fghytre45tgfde5tfdsdf';
+
         $postData = [
             'first_name'  => 'John',
             'last_name' => 'Doe',
+            'csrf' => 'fghytre45tgfde5tfdsdf',
             'email'     => 'john@sample.com',
         ];
         $this->dispatch('/user/add', 'GET', $postData);
 
         $this->dispatch('/user/delete/100', 'GET', $postData);
         $this->assertResponseStatusCode(200);
+    }
+
+    /**
+     * @expectedExceptionMessage csrf attack
+     */
+    public function testCSRFProtectionFailed()
+    {
+        $postData = [
+            'first_name'  => 'John',
+            'last_name' => 'Doe',
+            'email'     => 'john@sample.com',
+        ];
+        $this->dispatch('/user/add', 'POST', $postData);
+
+        $this->assertResponseStatusCode(500);
     }
 
     public function test404Redirect()

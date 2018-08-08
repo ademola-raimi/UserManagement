@@ -161,11 +161,18 @@ class UserManagementController extends AbstractActionController
         $request = $this->getRequest();
         $data = $request->getPost();
 
+
+
         if (! $request->isPost()) {
             return new ViewModel([
 	            'id' => $id,
 	            'user' => $user,
 	        ]);
+        }
+
+        // prevent CSRF
+        if (!isset($this->sessionContainer->csrf) || $this->sessionContainer->csrf !== $data['csrf']) {
+            throw new RuntimeException('CSRF attack');
         }
 
         $filter = $this->user->getInputFilter();
