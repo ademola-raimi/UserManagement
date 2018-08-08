@@ -46,6 +46,8 @@ You can also decide to create the db and the table directly with sqlite in the C
 ## Tests
 <hr>
 
+### Unit/Integration Test
+
 if you have phpunit installed globally (recommended), run
 `phpunit `
 Otherwise, run
@@ -59,13 +61,30 @@ Or
 Or
 `composer test`
 
-##NOTE! NOTE! NOTE!
+### Automation Test
+#### NOTE! NOTE! NOTE!
+
 I also took out time to write automation test. Codeception, Selenium server and chrome driver is used for this part. You don't need to install them, I already included the tools in the project
 
 To run the test, run:
-`vendor/bin/codecept run `
+```bash
+$ vendor/bin/codecept run
+```
+if you encounter an error such as:
+`UserManagement/tests/functional/ directory does not exist` and `UserManagement/tests/unit/  directory does not exist`,
+please make an empty directory of both folder to fix the error.
 
-This will open up chrome automatically and run all the UI tests
+```bash
+$ mkdir tests/functional && mkdir tests/unit
+```
+
+N.B: note that you need to start your server before running the test
+N.B: you also need to start selenium server by running:
+
+```bash
+$ java -jar selenium-server-standalone-3.13.0.jar
+```
+When you run the test, it will open up chrome automatically and run all the UI tests
 
 ## Other methods of installation
 <hr>
