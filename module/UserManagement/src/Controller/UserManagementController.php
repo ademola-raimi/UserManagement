@@ -2,6 +2,7 @@
 
 namespace UserManagement\Controller;
 
+use RuntimeException;
 use Zend\Session\Container;
 use Zend\Session\SessionManager;
 use Zend\View\Model\ViewModel;
@@ -59,11 +60,17 @@ class UserManagementController extends AbstractActionController
      * @return \Http\Response
      */
     public function addAction()
-    {
+    {   
         $request = $this->getRequest();
         $data = $request->getPost();
+
         if (! $request->isPost()) {
             return new ViewModel();
+        }
+
+        // prevent CSRF
+        if (!isset($this->sessionContainer->csrf) || $this->sessionContainer->csrf !== $data['csrf']) {
+            throw new RuntimeException('CSRF attack');
         }
 
         $filter = $this->user->getInputFilter();

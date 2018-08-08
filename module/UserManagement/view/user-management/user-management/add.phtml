@@ -1,14 +1,22 @@
 <?php
+use Zend\Session\Container;
+use Zend\Session\SessionManager;
+
+$sessionManager = new SessionManager();
+$sessionContainer = new Container('ContainerNamespace', $sessionManager);
 
 $title = 'Add User';
 $this->headTitle($title);
+
+$key = sha1(microtime());
+$sessionContainer->csrf = $key;
 
 ?>
 <h1><?= $this->escapeHtml($title) ?></h1>
 
 
 <form method="POST" action="<?= $this->url('user', ['action' => 'add']) ?>">
-
+<input type="hidden" name="csrf" value="<?= $key ?>" />
     <div class="form-group>
         <label for="first_name" class="control-label">First Name</label>
         <input id="first_name" type="text" class="form-control" name="first_name" value="<?= isset($oldData['first_name']) ? $oldData['first_name'] : '' ?>">
